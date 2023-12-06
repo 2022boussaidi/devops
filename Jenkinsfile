@@ -6,7 +6,7 @@ pipeline {
         PATH = "$JAVA_HOME/bin:$PATH"
     }
     tools{
-        maven 'maven'
+        maven 'Maven'
     }
     stages {
          
