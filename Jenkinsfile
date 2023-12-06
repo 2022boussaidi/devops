@@ -27,6 +27,7 @@ pipeline {
                     env.JAVA_HOME = 'workspace/jdk-17'
                     env.PATH = "$JAVA_HOME/bin:$PATH"
                 }
+
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/2022boussaidi/devops.git']])
                 sh 'mvn clean install -U'
             }
