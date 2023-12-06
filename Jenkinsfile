@@ -20,7 +20,7 @@ pipeline {
                 sh 'mvn clean install -U'
             }
         }
-       
+    
         stage('test') {
             steps {
                 script {
@@ -29,7 +29,7 @@ pipeline {
             }
         }
        
-    }
+    
     stage('Download and Install OpenJDK') {
             steps {
                 script {
@@ -40,4 +40,5 @@ pipeline {
                 }
             }
 }
+    }
 }
