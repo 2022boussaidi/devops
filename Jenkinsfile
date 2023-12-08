@@ -5,10 +5,6 @@ pipeline {
         JAVA_HOME = '/var/lib/jenkins/workspace/SpringBoot/workspace/jdk-17'
         PATH = "$JAVA_HOME/bin:$PATH"
     }
-    tools {
-        // Reference the configured Maven tool
-        maven 'Maven'
-    }
     stages {
         stage('Download and Install OpenJDK') {
             steps {
@@ -25,20 +21,17 @@ pipeline {
         stage('Build Maven') {
             steps {
                 script {
-                    env.JAVA_HOME = '/var/lib/jenkins/workspace/SpringBoot/workspace/jdk-17'
-                    env.PATH = "$JAVA_HOME/bin:$PATH"
+                    // Run Maven in a Docker container
+                    sh 'docker run --rm -v $PWD:/app -v $HOME/.m2:/root/.m2 -w /app maven:3.8.4 mvn clean install -U'
                 }
-
-                // Maven is now configured, no need for explicit path
-                sh 'mvn clean install -U'
             }
         }
 
         stage('test') {
             steps {
                 script {
-                    // Use the configured Maven tool for tests
-                    sh 'mvn test'
+                    // Run Maven tests in a Docker container
+                    sh 'docker run --rm -v $PWD:/app -v $HOME/.m2:/root/.m2 -w /app maven:3.8.4 mvn test'
                 }
             }
         }
