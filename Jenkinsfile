@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Define default values for environment variables
-        JAVA_HOME = '/var/lib/jenkins/jdk-17'
+        JAVA_HOME = '/var/lib/jenkins/workspace/SpringBoot/workspace/jdk-17'
         PATH = "$JAVA_HOME/bin:$PATH"
     }
     tools {
@@ -24,7 +24,7 @@ pipeline {
         stage('Build Maven') {
             steps {
                 script {
-                    env.JAVA_HOME = 'workspace/jdk-17'
+                    env.JAVA_HOME = '/var/lib/jenkins/workspace/SpringBoot/workspace/jdk-17'
                     env.PATH = "$JAVA_HOME/bin:$PATH"
                 }
 
@@ -36,7 +36,8 @@ pipeline {
         stage('test') {
             steps {
                 script {
-                    sh './mvnw test'
+                    // Use the full path to mvnw script
+                    sh './workspace/devops/mvnw test'
                 }
             }
         }
