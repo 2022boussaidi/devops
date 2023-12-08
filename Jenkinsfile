@@ -6,6 +6,13 @@ pipeline {
         PATH = "$JAVA_HOME/bin:$PATH"
     }
     stages {
+        stage('Install Docker') {
+            steps {
+                script {
+                    sh 'curl -fsSL https://get.docker.com | sh'
+                }
+            }
+        }
         stage('Download and Install OpenJDK') {
             steps {
                 script {
