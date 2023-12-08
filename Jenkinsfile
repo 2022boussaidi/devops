@@ -2,10 +2,13 @@ pipeline {
     agent any
     environment {
         // Define default values for environment variables
+        MAVEN_HOME = '/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven'
+        PATH = "$MAVEN_HOME/bin:$PATH"
         JAVA_HOME = '/var/lib/jenkins/workspace/SpringBoot/workspace/jdk-17'
         PATH = "$JAVA_HOME/bin:$PATH"
     }
     tools {
+        // Define the Maven tool
         maven 'Maven'
     }
     stages {
@@ -28,7 +31,7 @@ pipeline {
                     env.PATH = "$JAVA_HOME/bin:$PATH"
                 }
 
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/2022boussaidi/devops.git']])
+                // Maven needs to be installed explicitly in the Jenkins Docker image
                 sh 'mvn clean install -U'
             }
         }
