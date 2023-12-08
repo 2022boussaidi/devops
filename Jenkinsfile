@@ -3,7 +3,6 @@ pipeline {
     environment {
         // Define default values for environment variables
         MAVEN_HOME = '/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven'
-        PATH = "$MAVEN_HOME/bin:$PATH"
         JAVA_HOME = '/var/lib/jenkins/workspace/SpringBoot/workspace/jdk-17'
         PATH = "$JAVA_HOME/bin:$PATH"
     }
@@ -27,12 +26,9 @@ pipeline {
         stage('Build Maven') {
             steps {
                 script {
-                    env.JAVA_HOME = '/var/lib/jenkins/workspace/SpringBoot/workspace/jdk-17'
-                    env.PATH = "$JAVA_HOME/bin:$PATH"
+                    // Maven needs to be installed explicitly in the Jenkins Docker image
+                    sh 'mvn clean install -U'
                 }
-
-                // Maven needs to be installed explicitly in the Jenkins Docker image
-                sh 'mvn clean install -U'
             }
         }
 
