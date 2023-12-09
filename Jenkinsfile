@@ -9,7 +9,8 @@ pipeline {
         stage('Install Docker') {
             steps {
                 script {
-                    sh 'curl -fsSL https://get.docker.com | sh'
+                    // Use sudo to avoid authentication issues
+                    sh 'sudo apt-get update -qq && sudo apt-get install -y docker-ce docker-ce-cli containerd.io'
                 }
             }
         }
