@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     // Use sudo to avoid authentication issues
-                    sh 'sudo apt-get update -qq && sudo apt-get install -y docker-ce docker-ce-cli containerd.io'
+                    sh ' apt-get update -qq && sudo apt-get install -y docker-ce docker-ce-cli containerd.io'
                 }
             }
         }
