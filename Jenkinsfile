@@ -48,7 +48,16 @@ pipeline {
                    }
                }
        
-       
+        stage('Push image to Hub') {
+                   steps {
+                       script {
+                           withCredentials([string(credentialsId: 'id', variable: 'nouveaupass123')]) {
+                               sh "echo \${nouveaupass123} | docker login -u chaimaboussaidi2000 --password-stdin"
+                           }
+                           sh 'docker push chaimaboussaidi2000/docker-spring'
+                       }
+                   }
+               }
        
      }
     post {
