@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Dockerize') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'spring', usernameVariable: 'chaima', passwordVariable: '1234')]) {
+                withCredentials([usernamePassword(credentialsId: 'spring', usernameVariable: 'chaimaboussaidi2000', passwordVariable: '1dckr_pat_923pTOlNLURXCsgCTAKrik9o7PU')]) {
                 script {
                     // Define the Docker image name and tag
                     def imageName = 'registry/registry'
