@@ -40,24 +40,13 @@ pipeline {
                 }
             }
         }
-        stage('Dockerize') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'spring', usernameVariable: 'chaimaboussaidi2000', passwordVariable: '1dckr_pat_923pTOlNLURXCsgCTAKrik9o7PU')]) {
-                script {
-                    // Define the Docker image name and tag
-                    def imageName = 'registry/registry'
-                    def imageTag = '2'
-                   
-                    // Build the Docker image
-                    sh "docker build -t ${imageName}:${imageTag} ."
-                    sh "docker push ${imageName}:${imageTag} ."
-                   
-                   
-                   
-                }
-                }
-            }
-        }
+        stage('Build docker image'){
+                   steps{
+                       script{
+                           sh 'docker build -t chaimaboussaidi2000/docker-spring .'
+                       }
+                   }
+               }
        
        
        
