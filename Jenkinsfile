@@ -8,7 +8,10 @@ pipeline {
     tools{
         maven 'Maven'
     }
-     stage('Download and Install OpenJDK') {
+    
+
+    stages {
+         stage('Download and Install OpenJDK') {
             steps {
                 script {
                     // Download and install OpenJDK 17
@@ -18,8 +21,6 @@ pipeline {
                 }
             }
      }
-
-    stages {
          
         stage('Build Maven') {
             steps {
