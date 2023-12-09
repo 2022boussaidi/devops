@@ -40,5 +40,35 @@ pipeline {
                 }
             }
         }
+        stage('Dockerize') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'spring', usernameVariable: 'chaima', passwordVariable: '1234')]) {
+                script {
+                    // Define the Docker image name and tag
+                    def imageName = 'registry/registry'
+                    def imageTag = '2'
+                   
+                    // Build the Docker image
+                    sh "docker build -t ${imageName}:${imageTag} ."
+                   
+                   
+                   
+                }
+                }
+            }
+        }
+       
+       
+       
+     }
+    post {
+        success {
+            echo 'Build and tests passed.'
+        }
+
+        failure {
+            echo 'Build or tests failed.'
+        }
+
 }
 }
