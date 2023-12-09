@@ -50,6 +50,7 @@ pipeline {
                    
                     // Build the Docker image
                     sh "docker build -t ${imageName}:${imageTag} ."
+                    sh "docker push ${imageName}:${imageTag} ."
                    
                    
                    
