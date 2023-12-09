@@ -6,7 +6,7 @@ pipeline {
         PATH = "$JAVA_HOME/bin:$PATH"
     }
     tools{
-        maven 'maven'
+        maven 'Maven'
     }
      stage('Download and Install OpenJDK') {
             steps {
@@ -27,7 +27,7 @@ pipeline {
                     env.JAVA_HOME = '/var/lib/jenkins/jdk-17'
                     env.PATH = "$JAVA_HOME/bin:$PATH"
                 }
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/emnaRzeigui/Devops.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/2022boussaidi/devops.git']])
                 sh 'mvn clean install -U'
             }
         }
