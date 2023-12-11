@@ -58,6 +58,14 @@ pipeline {
                        }
                    }
                }
+         stage('Build and Run Docker Compose') {
+                           steps {
+                               script {
+                                   // Assuming your docker-compose.yml file is in the project root
+                                   sh 'docker-compose up -d'
+                               }
+                           }
+                       }
        
      }
     post {
