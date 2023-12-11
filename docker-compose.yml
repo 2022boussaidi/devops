@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  spring-app:
+    image: chaimaboussaidi2000/docker-spring:latest
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mongo
+    environment:
+      SPRING_DATA_MONGODB_DATABASE: "gte3"
+      SPRING_DATA_MONGODB_PORT: "27017"
+      SPRING_DATA_MONGODB_HOST: "mongo"
+      SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: "admin"
+      # Add other environment variables as needed
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "admin"
