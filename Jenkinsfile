@@ -11,7 +11,7 @@ pipeline {
     
 
     stages {
-        /** stage('Download and Install OpenJDK') {
+        /**stage('Download and Install OpenJDK') {
             steps {
                 script {
                     // Download and install OpenJDK 17
@@ -20,9 +20,9 @@ pipeline {
                     sh 'chmod -R 755 /var/lib/jenkins/jdk-17'
                 }
             }
-     }
+     }**/
          
-        stage('Build Maven') {
+       /**stage('Build Maven') {
             steps {
                 script {
                     env.JAVA_HOME = '/var/lib/jenkins/jdk-17'
