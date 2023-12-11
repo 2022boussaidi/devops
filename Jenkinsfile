@@ -11,7 +11,7 @@ pipeline {
     
 
     stages {
-        /* stage('Download and Install OpenJDK') {
+        /** stage('Download and Install OpenJDK') {
             steps {
                 script {
                     // Download and install OpenJDK 17
@@ -31,7 +31,7 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/2022boussaidi/devops.git']])
                 sh 'mvn clean install -U'
             }
-        }*/
+        }**/
        
         stage('test') {
             steps {
