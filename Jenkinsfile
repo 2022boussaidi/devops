@@ -48,6 +48,14 @@ pipeline {
                                }
                            }
                        }
+                        stage('Debug') {
+                                   steps {
+                                       script {
+                                           sh 'cat /home/chaima/.minikube/ca.crt'
+                                           sh 'minikube config view'
+                                       }
+                                   }
+                               }
            stage('Deploy to kubernetes'){
                                    steps{
                                        script{
