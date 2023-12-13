@@ -18,7 +18,7 @@ spec:
         - name: spring-boot-k8s
           image: chaimaboussaidi2000/docker-spring
           ports:
-            - containerPort: 8080
+            - containerPort: 9090
           env:
             - name: SPRING_DATA_MONGODB_URI
               value: "mongodb://mongo:27017/mydatabase" # Utilisez le nom du service MongoDB pour la connexion
@@ -34,8 +34,8 @@ spec:
     app: spring-boot-k8s
   ports:
     - protocol: "TCP"
-      port: 8080
-      targetPort: 8080
+      port: 9090
+      targetPort: 9090
   type: NodePort
 
 ---
