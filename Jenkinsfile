@@ -4,6 +4,7 @@ pipeline {
         // Define default values for environment variables
         JAVA_HOME = '/var/lib/jenkins/jdk-17'
         PATH = "$JAVA_HOME/bin:$PATH"
+        SCANNER_HOME=tool 'sonar-scanner'
     }
     tools{
         maven 'Maven'
@@ -56,6 +57,22 @@ pipeline {
                                        }
                                    }
                                }
+                               stage("Sonarqube Analysis "){
+                                           steps{
+                                               withSonarQubeEnv('sonar-server') {
+                                                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Spring_app \
+                                                   -Dsonar.java.binaries=. \
+                                                   -Dsonar.projectKey=Petshop '''
+                                               }
+                                           }
+                                       }
+                                       stage("quality gate"){
+                                           steps {
+                                               script {
+                                                 waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                                               }
+                                          }
+                                       }
        
      }
     post {
